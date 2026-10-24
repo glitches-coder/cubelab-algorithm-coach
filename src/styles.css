@@ -114,3 +114,6 @@
   .cube-net { max-width:285px; margin:0 auto; }
   .state-preview summary { align-items:flex-start; }
 }
+
+.cube-lesson-diagram.hands-only, .cube-lesson-diagram.face-only { grid-template-columns: minmax(0, 1fr); }
+.cube-lesson-diagram.hands-only > .diagram-card, .cube-lesson-diagram.face-only > .diagram-card { width:100%; }
