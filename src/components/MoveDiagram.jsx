@@ -126,7 +126,7 @@ export default function MoveDiagram({ move, viewMode = 'both', hand = 'right', c
   const faceVisible = viewMode === 'both' || viewMode === 'face';
 
   return (
-    <div className={`diagram-wrap cube-lesson-diagram ${compact ? 'compact' : ''} ${viewMode === 'hands' ? 'hands-only' : ''}`}>
+    <div className={`diagram-wrap cube-lesson-diagram ${compact ? 'compact' : ''} ${viewMode === 'hands' ? 'hands-only' : ''} ${viewMode === 'face' ? 'face-only' : ''}`}>
       {faceVisible && <section className="diagram-card face-lesson-card">
         <div className="diagram-label">
           <span>FACE-ON VIEW</span>
