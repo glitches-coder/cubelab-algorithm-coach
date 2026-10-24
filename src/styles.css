@@ -2,3 +2,82 @@
 @media(max-width:1000px){.app-shell{padding:18px}.app-layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;align-items:center;gap:4px;overflow:auto;padding:7px}.side-label,.path-mini,.side-tip{display:none}.nav-button{width:auto;white-space:nowrap;flex:none;padding:9px 11px}.nav-button i{display:none}.library-layout{grid-template-columns:minmax(210px,.8fr) minmax(0,1.2fr)}.hero-stat{width:160px}}
 @media(max-width:700px){.app-shell{padding:14px 12px 28px}.topbar{margin-bottom:24px}.hero{align-items:start;flex-direction:column;margin-bottom:22px}.hero-stat{display:none}.hero h1{font-size:38px}.sidebar{margin-bottom:20px}.nav-button{font-size:11px}.nav-button svg{width:16px}.section-heading{flex-direction:column}.toggle-group{max-width:100%}.move-picker{grid-template-columns:repeat(3,minmax(0,1fr))}.lesson-panel{padding:13px}.diagram-wrap{grid-template-columns:1fr}.diagram-card{padding:13px}.face-visual{width:min(70%,220px)}.hand-stage{min-height:170px}.lesson-bottom{grid-template-columns:1fr}.hand-setting .toggle-group{width:max-content}.quick-drill{align-items:start;flex-wrap:wrap}.quick-drill div:nth-child(2){min-width:calc(100% - 60px)}.quick-drill .primary-btn{width:100%}.library-layout{grid-template-columns:1fr}.algorithm-detail{padding:14px}.feature-grid{grid-template-columns:1fr}.compare-moves{grid-template-columns:repeat(2,1fr)}.practice-layout{grid-template-columns:1fr}.path-grid{grid-template-columns:repeat(2,1fr)}.footer{flex-direction:column}.diagram-wrap.compact{grid-template-columns:1fr 1fr}.diagram-wrap.compact .hand-stage{flex-direction:column}.diagram-wrap.compact .mini-cube{transform:scale(.6);margin-top:-12px;margin-bottom:-12px}.diagram-wrap.compact .finger-callout{max-width:100%;text-align:center;align-items:center}.diagram-wrap.compact .face-visual{width:100%;max-width:135px}}
 @media(max-width:400px){.nav-button{padding:8px}.nav-button span{font-size:10px}.move-picker{grid-template-columns:repeat(3,minmax(0,1fr))}.path-grid{grid-template-columns:1fr}.diagram-wrap.compact{grid-template-columns:1fr}.diagram-wrap.compact .hand-stage{flex-direction:row}.diagram-wrap.compact .mini-cube{transform:scale(.7);margin:0}.answer-buttons{grid-template-columns:1fr}.lesson-top h3{font-size:19px}}
+
+
+/* CubeLab visualizer v2: face colors, tangent-correct arrowheads, and real cue highlighting. */
+.cube-lesson-diagram .diagram-card { overflow: hidden; }
+.cube-lesson-diagram .diagram-label { display:flex; align-items:center; gap:10px; }
+.cube-lesson-diagram .diagram-label > span { color: #aab5c5; }
+.cube-lesson-diagram .diagram-label small { color:#7e899b; font-size:10px; font-weight:500; letter-spacing:0; text-align:right; }
+.cube-lesson-diagram .face-visual {
+  width:min(100%, 248px); aspect-ratio:1; margin:16px auto 14px; padding:12px;
+  display:grid; place-items:center; position:relative; overflow:hidden;
+  background:#202733; border:1px solid #394453; border-radius:16px;
+  box-shadow:0 12px 26px #0004;
+}
+.cube-lesson-diagram .face-cubies {
+  width:100%; height:100%; display:grid; grid-template-columns:repeat(3,1fr); gap:5px;
+  border-radius:7px; overflow:hidden;
+}
+.cube-lesson-diagram .face-cubies i {
+  display:block; background:var(--face-color); border-radius:5px;
+  border:1px solid #0003; box-shadow:inset 0 1px #ffffff55, inset 0 -2px #00000018;
+  min-width:0; min-height:0;
+}
+.cube-lesson-diagram .face-cubies i.center-cubie {
+  box-shadow:inset 0 1px #ffffff55, inset 0 -2px #00000018, 0 0 0 2px #ffffff30;
+  position:relative;
+}
+.cube-lesson-diagram .face-center-label {
+  position:absolute; width:35px; height:35px; border-radius:9px; display:grid; place-items:center;
+  background:#11161ddf; color:var(--face-color); border:1px solid #ffffff64;
+  font:800 13px 'Space Grotesk',sans-serif; box-shadow:0 3px 9px #0005;
+}
+.cube-lesson-diagram .turn-arrow {
+  position:absolute; inset:0; width:100%; height:100%; overflow:visible;
+  filter:drop-shadow(0 2px 2px #0004); pointer-events:none;
+}
+.cube-lesson-diagram .turn-arrow-track {
+  fill:none; stroke:#fafff2; stroke-width:7; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:7 4; animation:arrow-flow 1.5s linear infinite;
+}
+.cube-lesson-diagram .turn-arrow-head { fill:#fafff2; stroke:#1e2a2e; stroke-width:1.5; stroke-linejoin:round; }
+.cube-lesson-diagram .half-arrow { fill:none; }
+.cube-lesson-diagram .direction-caption { min-height:39px; }
+.cube-lesson-diagram .reference-cube-row { display:grid; grid-template-columns:minmax(145px,.8fr) minmax(0,1.2fr); gap:13px; align-items:center; padding:12px 0 5px; }
+.cube-lesson-diagram .reference-cube { width:100%; max-width:210px; justify-self:center; overflow:visible; }
+.cube-lesson-diagram .grip-summary { display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
+.cube-lesson-diagram .active-finger-badge {
+  background:#293522; color:var(--lime); border:1px solid #536a3b;
+  border-radius:6px; padding:5px 7px; font-size:9px; letter-spacing:1px; font-weight:850;
+}
+.cube-lesson-diagram .grip-summary strong { font:700 14px 'Space Grotesk',sans-serif; }
+.cube-lesson-diagram .grip-summary p { color:var(--muted); font-size:11px; line-height:1.65; margin:0; }
+.cube-lesson-diagram .projection-note { display:flex; flex-direction:column; gap:4px; padding:9px; width:100%; background:#12252a; border-left:3px solid var(--cyan); border-radius:0 7px 7px 0; }
+.cube-lesson-diagram .projection-note b { color:var(--cyan); font-size:10px; }
+.cube-lesson-diagram .projection-note span { color:#c0d4d9; font-size:10px; line-height:1.5; }
+.cube-lesson-diagram .hands-stage { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:11px; }
+.cube-lesson-diagram .hand-choice { min-width:0; border:1px solid #34404d; background:#151a22; border-radius:11px; padding:9px; transition:border-color .16s, background .16s, opacity .16s; }
+.cube-lesson-diagram .hand-choice.is-active { border-color:#9cc94f; background:#202a1d; box-shadow:inset 0 0 0 1px #c7f36622; }
+.cube-lesson-diagram .hand-choice.is-inactive { opacity:.78; }
+.cube-lesson-diagram .hand-heading { display:flex; justify-content:space-between; align-items:center; gap:5px; font-size:9px; letter-spacing:1px; color:var(--muted); font-weight:850; }
+.cube-lesson-diagram .hand-heading b { font-size:8px; color:var(--lime); letter-spacing:.5px; }
+.cube-lesson-diagram .hand-illustration { display:block; width:100%; max-width:138px; height:100px; margin:4px auto 0; overflow:visible; }
+.cube-lesson-diagram .hand-role { font-size:10px; min-height:28px; line-height:1.4; text-align:center; color:var(--muted); }
+.cube-lesson-diagram .hand-choice.is-active .hand-role { color:var(--lime); font-weight:750; }
+.cube-lesson-diagram .hand-principle { display:flex; flex-direction:column; gap:4px; padding-top:11px; margin-top:10px; border-top:1px solid var(--line); }
+.cube-lesson-diagram .hand-principle b { font-size:11px; }
+.cube-lesson-diagram .hand-principle span { color:var(--muted); font-size:10px; line-height:1.5; }
+@keyframes arrow-flow { to { stroke-dashoffset:-44; } }
+@media(max-width:700px) {
+  .cube-lesson-diagram .face-visual { width:min(72%,240px); }
+  .cube-lesson-diagram .reference-cube-row { grid-template-columns:minmax(100px,.65fr) minmax(0,1fr); gap:9px; }
+  .cube-lesson-diagram .grip-summary strong { font-size:12px; }
+  .cube-lesson-diagram .hands-stage { gap:7px; }
+  .cube-lesson-diagram .hand-choice { padding:7px; }
+  .cube-lesson-diagram .hand-illustration { height:78px; }
+}
+@media(max-width:390px) {
+  .cube-lesson-diagram .reference-cube-row { grid-template-columns:1fr; }
+  .cube-lesson-diagram .reference-cube { max-width:180px; }
+}
