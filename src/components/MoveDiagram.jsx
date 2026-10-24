@@ -1,4 +1,5 @@
 import React from 'react';
+import CubeNetPreview from './CubeNetPreview.jsx';
 
 const FACE_NAMES = { U: 'Up', D: 'Down', R: 'Right', L: 'Left', F: 'Front', B: 'Back' };
 const FACE_COLORS = {
@@ -150,6 +151,7 @@ export default function MoveDiagram({ move, viewMode = 'both', hand = 'right', c
           <strong>{half ? 'Turn 180°' : direction}</strong>
           <span>{move} · {name} face · {face === 'B' ? 'clockwise is judged from behind the cube' : 'clockwise is judged from this face-on view'}</span>
         </div>
+        <CubeNetPreview move={move} />
       </section>}
 
       {handsVisible && <section className="diagram-card grip-lesson-card">
