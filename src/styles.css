@@ -81,3 +81,36 @@
   .cube-lesson-diagram .reference-cube-row { grid-template-columns:1fr; }
   .cube-lesson-diagram .reference-cube { max-width:180px; }
 }
+
+/* Six-face state preview backed by the same move engine used by tests. */
+.state-preview { margin-top:14px; border:1px solid #34404d; border-radius:11px; background:#151a22; overflow:hidden; }
+.state-preview summary { list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:10px; padding:11px 12px; font-size:11px; font-weight:800; }
+.state-preview summary::-webkit-details-marker { display:none; }
+.state-preview summary::before { content:'＋'; color:var(--cyan); font-size:15px; }
+.state-preview[open] summary::before { content:'−'; }
+.state-preview summary span { color:var(--cyan); font-size:9px; font-weight:700; white-space:nowrap; }
+.state-help { margin:0; padding:0 12px 10px; color:var(--muted); font-size:10px; line-height:1.55; }
+.net-comparison { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:0 12px 12px; }
+.net-snapshot { min-width:0; }
+.net-title { display:flex; justify-content:space-between; align-items:center; gap:6px; margin:0 0 8px; font-size:10px; }
+.net-title span { color:var(--muted); font-size:9px; }
+.cube-net { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); grid-template-rows:repeat(3,auto); gap:3px; }
+.net-face { position:relative; grid-row:2; background:#252d37; padding:3px; border-radius:4px; min-width:0; }
+.net-face-u { grid-column:2; grid-row:1; }
+.net-face-l { grid-column:1; }
+.net-face-f { grid-column:2; }
+.net-face-r { grid-column:3; }
+.net-face-b { grid-column:4; }
+.net-face-d { grid-column:2; grid-row:3; }
+.net-face>b { display:block; color:#94a1b3; font-size:8px; line-height:1; margin:1px 0 3px; text-align:center; }
+.net-stickers { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2px; aspect-ratio:1; }
+.net-stickers i { display:block; min-width:0; border-radius:2px; border:1px solid #0003; }
+.net-face-active { outline:2px solid var(--lime); outline-offset:1px; z-index:1; }
+.net-face-active>b { color:var(--lime); }
+.state-legend { display:flex; gap:5px 8px; flex-wrap:wrap; align-items:center; padding:9px 12px; border-top:1px solid var(--line); color:var(--muted); font-size:9px; }
+.state-legend i { display:inline-block; width:9px; height:9px; border-radius:2px; border:1px solid #ffffff38; margin-right:-5px; }
+@media(max-width:700px) {
+  .net-comparison { grid-template-columns:1fr; }
+  .cube-net { max-width:285px; margin:0 auto; }
+  .state-preview summary { align-items:flex-start; }
+}
